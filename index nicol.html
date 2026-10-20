@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!-- Página web de consultoría: Nicol Sanchez Consultores (plantilla editable, tonos oscuros) -->
+<!-- Los textos entre [corchetes] son marcadores: reemplázalos por la información real. -->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nicol Sanchez Consultores: asesoría estratégica para empresas y organizaciones.">
+  <title>Nicol Sanchez Consultores | Asesoría Estratégica</title>
+
+  <style>
+    /* ===== 1. VARIABLES DE COLOR (tonos oscuros) ===== */
+    :root {
+      --fondo: #0c1018;
+      --fondo-2: #121826;
+      --tarjeta: #182032;
+      --borde: #2a3650;
+      --azul: #6f8fc4;          /* enlaces y detalles */
+      --azul-oscuro: #2b4a7d;   /* botones */
+      --dorado: #c9a24a;        /* acento discreto */
+      --texto: #d7deea;
+      --suave: #9fadc4;
+      --blanco: #f2f5fa;
+    }
+
+    /* ===== 2. ESTILOS GENERALES ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: "Segoe UI", Arial, sans-serif; background: var(--fondo); color: var(--texto); line-height: 1.65; }
+    a { color: var(--azul); }
+    :focus-visible { outline: 3px solid var(--dorado); outline-offset: 3px; }
+
+    .contenedor { width: 90%; max-width: 1100px; margin: 0 auto; }
+    section { padding: 70px 0; }
+    .fondo-alterno { background: var(--fondo-2); }
+    .titulo-seccion { text-align: center; color: var(--blanco); font-size: 2rem; }
+    .titulo-seccion::after { content: ""; display: block; width: 70px; height: 3px; background: var(--dorado); margin: 10px auto 0; }
+    .subtitulo-seccion { text-align: center; margin: 14px 0 38px; color: var(--suave); }
+    .marcador { background: #3a3115; color: #f1dfa6; padding: 0 4px; border-radius: 3px; } /* resalta lo que debes reemplazar */
+
+    .saltar { position: absolute; left: -999px; background: var(--dorado); color: #000; padding: 10px 16px; z-index: 100; }
+    .saltar:focus { left: 10px; top: 10px; }
+
+    /* ===== 3. ENCABEZADO Y MENÚ ===== */
+    .encabezado { background: #080b11; position: sticky; top: 0; z-index: 50; border-bottom: 2px solid var(--borde); }
+    .encabezado__contenido { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 0; }
+    .logotipo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .logotipo__sello { border: 2px solid var(--dorado); color: var(--dorado); width: 44px; height: 44px; border-radius: 6px; display: grid; place-items: center; font-weight: 800; }
+    .logotipo__texto { display: flex; flex-direction: column; line-height: 1.1; }
+    .logotipo__nombre { color: var(--blanco); font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; }
+    .logotipo__etiqueta { color: var(--dorado); font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+    .menu { display: flex; flex-wrap: wrap; list-style: none; gap: 4px; }
+    .menu a { color: var(--texto); text-decoration: none; padding: 8px 13px; border-radius: 4px; transition: background 0.3s, color 0.3s; }
+    .menu a:hover { background: var(--tarjeta); color: var(--dorado); }
+
+    /* ===== 4. INICIO ===== */
+    .inicio { background: linear-gradient(135deg, #0c1018 0%, #16223a 100%); color: var(--blanco); padding: 85px 0; }
+    .inicio__contenido { display: grid; gap: 40px; align-items: center; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .inicio__etiqueta { color: var(--dorado); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; }
+    .inicio h1 { font-size: clamp(2rem, 5.5vw, 3.1rem); line-height: 1.2; margin: 8px 0 14px; }
+    .inicio h1 span { color: var(--dorado); }
+    .inicio p { font-size: 1.1rem; margin-bottom: 26px; }
+    .boton { display: inline-block; background: var(--azul-oscuro); color: var(--blanco); font-weight: 700; padding: 13px 28px; border-radius: 4px; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: transform 0.2s, background 0.3s; }
+    .boton:hover { background: #38609e; transform: translateY(-3px); }
+    .boton--borde { background: transparent; border: 2px solid var(--dorado); color: var(--dorado); margin-left: 8px; }
+
+    /* Panel decorativo con áreas de consultoría */
+    .panel { background: rgba(24,32,50,0.9); border: 1px solid var(--borde); border-radius: 10px; padding: 22px; }
+    .panel h2 { font-size: 1rem; color: var(--dorado); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+    .panel ul { list-style: none; }
+    .panel li { padding: 10px 0; border-bottom: 1px dashed var(--borde); }
+    .panel li:last-child { border-bottom: none; }
+
+    /* ===== 5. TARJETAS ===== */
+    .cuadricula { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .tarjeta { background: var(--tarjeta); border: 1px solid var(--borde); border-top: 3px solid var(--azul-oscuro); border-radius: 10px; padding: 26px 22px; transition: transform 0.3s, border-top-color 0.3s; }
+    .tarjeta:hover { transform: translateY(-5px); border-top-color: var(--dorado); }
+    .tarjeta__icono { font-size: 2.3rem; display: block; margin-bottom: 8px; }
+    .tarjeta h3 { color: var(--blanco); margin-bottom: 6px; }
+    .tarjeta p { color: var(--suave); }
+
+    /* ===== 6. NOSOTROS ===== */
+    .nosotros__cuadricula { display: grid; gap: 30px; align-items: start; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .nosotros__caja { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 10px; padding: 24px; }
+    .nosotros__caja h3 { color: var(--dorado); margin: 14px 0 2px; }
+    .nosotros__caja h3:first-child { margin-top: 0; }
+
+    /* ===== 7. METODOLOGÍA (pasos numerados) ===== */
+    .pasos { list-style: none; display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); counter-reset: paso; }
+    .pasos li { counter-increment: paso; background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 10px; padding: 22px; }
+    .pasos li::before { content: counter(paso); display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--azul-oscuro); color: var(--blanco); font-weight: 700; margin-bottom: 10px; }
+    .pasos h3 { color: var(--blanco); margin-bottom: 4px; }
+    .pasos p { color: var(--suave); }
+
+    /* ===== 8. CONTACTO ===== */
+    .contacto__cuadricula { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .contacto__datos { list-style: none; }
+    .contacto__datos li { margin-bottom: 14px; }
+    .formulario { background: var(--tarjeta); padding: 25px; border-radius: 10px; border: 1px solid var(--borde); }
+    .formulario label { display: block; margin: 12px 0 5px; font-weight: 600; color: var(--blanco); }
+    .formulario input, .formulario textarea { width: 100%; padding: 11px; border-radius: 6px; border: 2px solid var(--borde); background: #0c1018; color: var(--blanco); font-size: 1rem; font-family: inherit; }
+    .formulario input:focus, .formulario textarea:focus { border-color: var(--azul); }
+    .aviso { background: #2a2410; border-left: 4px solid var(--dorado); padding: 10px; font-size: 0.9rem; color: #ecdcae; }
+    #mensaje-demo { margin-top: 12px; color: #7fcf9f; font-weight: 700; }
+
+    /* ===== 9. PIE DE PÁGINA ===== */
+    .pie { background: #080b11; border-top: 2px solid var(--borde); text-align: center; padding: 28px 0; font-size: 0.9rem; color: var(--suave); }
+    .pie a { text-decoration: none; margin: 0 8px; }
+
+    /* ===== 10. DISEÑO ADAPTABLE ===== */
+    @media (max-width: 768px) {
+      .encabezado__contenido { justify-content: center; }
+      .menu { justify-content: center; }
+      section { padding: 50px 0; }
+      .inicio { padding: 55px 0; }
+      .boton--borde { margin: 10px 0 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- ===== ENCABEZADO ===== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <a href="#inicio" class="logotipo" aria-label="Nicol Sanchez Consultores, ir al inicio">
+        <span class="logotipo__sello" aria-hidden="true">NS</span>
+        <span class="logotipo__texto">
+          <span class="logotipo__nombre">Nicol Sanchez</span>
+          <span class="logotipo__etiqueta">Consultores</span>
+        </span>
+      </a>
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#metodologia">Metodología</a></li>
+          <li><a href="#ventajas">Ventajas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ===== INICIO ===== -->
+    <section id="inicio" class="inicio">
+      <div class="contenedor inicio__contenido">
+        <div>
+          <span class="inicio__etiqueta">Asesoría y consultoría</span>
+          <h1>Decisiones claras para organizaciones que quieren <span>crecer con rumbo</span></h1>
+          <p>Acompañamos a empresas y emprendimientos en estrategia, procesos y talento humano, con un enfoque práctico y cercano.</p>
+          <a href="#contacto" class="boton">Agendar una asesoría</a>
+          <a href="#servicios" class="boton boton--borde">Ver servicios</a>
+        </div>
+        <div class="panel">
+          <h2>Áreas de consultoría</h2>
+          <ul>
+            <li>📈 Estrategia y planeación</li>
+            <li>⚙️ Procesos y gestión administrativa</li>
+            <li>👥 Talento humano</li>
+            <li>📣 Marketing y posicionamiento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NOSOTROS ===== -->
+    <section id="nosotros" class="fondo-alterno">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Quiénes somos</h2>
+        <p class="subtitulo-seccion">Una firma de consultoría enfocada en resultados</p>
+        <div class="nosotros__cuadricula">
+          <div>
+            <p>Nicol Sanchez Consultores ofrece acompañamiento profesional para que las organizaciones ordenen su gestión, definan prioridades y tomen mejores decisiones.</p>
+            <br>
+            <p><span class="marcador">[Agrega aquí tu perfil real: formación, experiencia y sectores en los que trabajas.]</span></p>
+          </div>
+          <div class="nosotros__caja">
+            <h3>Misión</h3>
+            <p>Impulsar el desarrollo de nuestros clientes con asesoría clara, ética y orientada a resultados.</p>
+            <h3>Visión</h3>
+            <p>Ser una firma de consultoría confiable y cercana para empresas y emprendimientos de la región.</p>
+            <h3>Valores</h3>
+            <p>Ética, compromiso, confidencialidad y mejora continua.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICIOS ===== -->
+    <section id="servicios">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Nuestros servicios</h2>
+        <p class="subtitulo-seccion">Soluciones a la medida de tu organización</p>
+        <div class="cuadricula">
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">🧭</span><h3>Consultoría estratégica</h3><p>Diagnóstico, objetivos y plan de acción para tu negocio.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">🗂️</span><h3>Gestión y procesos</h3><p>Organización de procesos, documentación y estándares de calidad.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">👥</span><h3>Talento humano</h3><p>Selección, clima laboral y planes de formación.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">💰</span><h3>Finanzas y presupuesto</h3><p>Control de costos, presupuestos y análisis de viabilidad.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">📣</span><h3>Marketing y marca</h3><p>Posicionamiento, comunicación y estrategias comerciales.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">🎓</span><h3>Capacitación empresarial</h3><p>Talleres y entrenamientos para equipos de trabajo.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== METODOLOGÍA ===== -->
+    <section id="metodologia" class="fondo-alterno">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Cómo trabajamos</h2>
+        <p class="subtitulo-seccion">Un proceso claro en cuatro pasos</p>
+        <ol class="pasos">
+          <li><h3>Diagnóstico</h3><p>Escuchamos tus necesidades y analizamos la situación actual.</p></li>
+          <li><h3>Propuesta</h3><p>Definimos objetivos, alcance y plan de trabajo.</p></li>
+          <li><h3>Implementación</h3><p>Acompañamos la ejecución de las acciones acordadas.</p></li>
+          <li><h3>Seguimiento</h3><p>Medimos avances y ajustamos lo necesario.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== VENTAJAS COMPETITIVAS ===== -->
+    <section id="ventajas">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">¿Por qué elegirnos?</h2>
+        <p class="subtitulo-seccion">Lo que nos diferencia</p>
+        <div class="cuadricula">
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">🎯</span><h3>Enfoque práctico</h3><p>Recomendaciones aplicables, no solo teoría.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">🤝</span><h3>Trato cercano</h3><p>Acompañamiento personalizado en cada etapa.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">🔒</span><h3>Confidencialidad</h3><p>Manejo reservado de la información de tu empresa.</p></article>
+          <article class="tarjeta"><span class="tarjeta__icono" aria-hidden="true">🧩</span><h3>Soluciones a la medida</h3><p>Cada plan se adapta al tamaño y las metas de tu negocio.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="fondo-alterno">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Contacto</h2>
+        <p class="subtitulo-seccion">Cuéntanos qué necesita tu organización</p>
+        <div class="contacto__cuadricula">
+          <ul class="contacto__datos">
+            <li><strong>✉️ Correo:</strong> <span class="marcador">[correo@ejemplo.com]</span></li>
+            <li><strong>📞 Teléfono:</strong> <span class="marcador">[número de contacto]</span></li>
+            <li><strong>📍 Oficina:</strong> <span class="marcador">[dirección o ciudad]</span></li>
+            <li><strong>🕒 Horario:</strong> <span class="marcador">[días y horas de atención]</span></li>
+          </ul>
+
+          <!-- Formulario demostrativo -->
+          <form class="formulario" id="formulario-demo">
+            <p class="aviso"><strong>Formulario demostrativo:</strong> no envía información; requiere una integración adicional para funcionar.</p>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" required>
+            <label for="texto">Mensaje</label>
+            <textarea id="texto" name="texto" rows="4" required></textarea>
+            <br><br>
+            <button type="submit" class="boton">Enviar (demo)</button>
+            <p id="mensaje-demo" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <p><a href="#inicio">Inicio</a> | <a href="#servicios">Servicios</a> | <a href="#metodologia">Metodología</a> | <a href="#contacto">Contacto</a></p>
+      <p>&copy; 2026 Nicol Sanchez Consultores. Todos los derechos reservados. Los textos resaltados son marcadores por completar.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Evita que el formulario demostrativo recargue la página y muestra un aviso */
+    document.getElementById("formulario-demo").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      document.getElementById("mensaje-demo").textContent = "Demostración: el mensaje no fue enviado.";
+    });
+  </script>
+</body>
+</html>
