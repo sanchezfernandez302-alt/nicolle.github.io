@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Faro Consultores: asesoría contable, tributaria y administrativa para pequeñas y medianas empresas.">
+  <title>Faro Consultores | Asesoría para pymes</title>
+
+  <style>
+    /* =========================================================
+       1. VARIABLES: aquí cambias los colores de tu empresa
+       ========================================================= */
+    :root {
+      --color-principal: #0f3d5e;   /* Azul petróleo (confianza) */
+      --color-oscuro:    #0a2740;   /* Azul muy oscuro (fondos y pie) */
+      --color-acento:    #e8a33d;   /* Ámbar (botones y detalles) */
+      --color-fondo:     #f5f7f9;   /* Gris muy claro */
+      --color-blanco:    #ffffff;
+      --color-texto:     #1d2b36;   /* Texto principal, buen contraste */
+      --color-texto-suave: #4a5b68;
+      --fuente: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* =========================================================
+       2. ESTILOS GENERALES
+       ========================================================= */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    body {
+      font-family: var(--fuente);
+      color: var(--color-texto);
+      background: var(--color-fondo);
+      line-height: 1.6;
+    }
+
+    /* Contenedor que centra y limita el ancho del contenido */
+    .contenedor {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .seccion { padding: 72px 0; }
+    .seccion--blanca { background: var(--color-blanco); }
+
+    .seccion__titulo {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--color-principal);
+      margin-bottom: 12px;
+    }
+    .seccion__intro {
+      max-width: 60ch;
+      color: var(--color-texto-suave);
+      margin-bottom: 36px;
+    }
+
+    /* Foco visible para quien navega con teclado */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--color-acento);
+      outline-offset: 3px;
+    }
+
+    /* Enlace para saltar al contenido (accesibilidad) */
+    .saltar-contenido {
+      position: absolute;
+      left: -999px;
+      background: var(--color-acento);
+      color: var(--color-oscuro);
+      padding: 10px 16px;
+      z-index: 200;
+    }
+    .saltar-contenido:focus { left: 10px; top: 10px; }
+
+    /* =========================================================
+       3. ENCABEZADO Y MENÚ
+       ========================================================= */
+    .encabezado {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-oscuro);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+    }
+    .encabezado__contenido {
+      display: flex;
+      flex-wrap: wrap;            /* en celulares el menú baja de línea */
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 24px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    .logotipo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--color-blanco);
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .logotipo__icono {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      background: var(--color-acento);
+      color: var(--color-oscuro);
+      border-radius: 50%;
+      font-size: 1.1rem;
+    }
+    .menu { display: flex; flex-wrap: wrap; gap: 4px 6px; list-style: none; }
+    .menu a {
+      display: block;
+      padding: 8px 14px;
+      color: var(--color-blanco);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: .95rem;
+    }
+    .menu a:hover { background: var(--color-principal); }
+
+    /* =========================================================
+       4. PORTADA (HERO)
+       ========================================================= */
+    .portada {
+      background: linear-gradient(135deg, var(--color-oscuro), var(--color-principal));
+      color: var(--color-blanco);
+      padding: 96px 0;
+    }
+    .portada__titulo {
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      line-height: 1.15;
+      max-width: 18ch;
+      margin-bottom: 20px;
+    }
+    .portada__texto { max-width: 55ch; font-size: 1.1rem; margin-bottom: 32px; }
+
+    .boton {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--color-acento);
+      color: var(--color-oscuro);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .boton:hover { background: #f2b95c; }
+    .boton--secundario {
+      background: transparent;
+      color: var(--color-blanco);
+      border: 2px solid var(--color-blanco);
+      margin-left: 8px;
+    }
+    .boton--secundario:hover { background: rgba(255, 255, 255, .15); }
+
+    /* =========================================================
+       5. SOBRE NOSOTROS
+       ========================================================= */
+    .nosotros {
+      display: grid;
+      grid-template-columns: 1fr 1fr;   /* dos columnas en computador */
+      gap: 40px;
+      align-items: center;
+    }
+    .nosotros__datos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .dato {
+      background: var(--color-fondo);
+      border-left: 5px solid var(--color-acento);
+      padding: 18px;
+      border-radius: 8px;
+    }
+    .dato strong { display: block; font-size: 1.8rem; color: var(--color-principal); }
+
+    /* =========================================================
+       6. TARJETAS (servicios y ventajas)
+       ========================================================= */
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* se adapta solo */
+      gap: 24px;
+    }
+    .tarjeta {
+      background: var(--color-blanco);
+      padding: 28px;
+      border-radius: 12px;
+      border-top: 4px solid var(--color-principal);
+      box-shadow: 0 2px 10px rgba(15, 61, 94, .1);
+    }
+    .tarjeta__icono { font-size: 2rem; margin-bottom: 12px; }
+    .tarjeta h3 { color: var(--color-principal); margin-bottom: 8px; }
+    .tarjeta p { color: var(--color-texto-suave); }
+    .tarjeta--ventaja { background: var(--color-fondo); border-top-color: var(--color-acento); box-shadow: none; }
+
+    /* =========================================================
+       7. CONTACTO
+       ========================================================= */
+    .contacto { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .contacto__lista { list-style: none; display: grid; gap: 14px; }
+    .contacto__lista li { display: flex; gap: 12px; }
+
+    .formulario { display: grid; gap: 14px; }
+    .formulario label { font-weight: 600; display: block; margin-bottom: 4px; }
+    .formulario input, .formulario textarea {
+      width: 100%;
+      padding: 12px;
+      font: inherit;
+      border: 2px solid #8a99a5;
+      border-radius: 8px;
+    }
+    .aviso-demo {
+      background: #fff6e0;
+      border: 1px solid var(--color-acento);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: .9rem;
+    }
+    .mensaje-demo { font-weight: 600; color: var(--color-principal); }
+
+    /* =========================================================
+       8. PIE DE PÁGINA
+       ========================================================= */
+    .pie {
+      background: var(--color-oscuro);
+      color: #d5dee5;
+      padding: 32px 0;
+      text-align: center;
+      font-size: .95rem;
+    }
+    .pie a { color: var(--color-acento); }
+
+    /* =========================================================
+       9. ADAPTACIÓN A TABLETAS Y CELULARES
+       ========================================================= */
+    @media (max-width: 800px) {
+      .nosotros, .contacto { grid-template-columns: 1fr; }  /* una sola columna */
+      .portada { padding: 64px 0; }
+      .seccion { padding: 52px 0; }
+      .boton--secundario { margin: 12px 0 0 0; }
+    }
+    @media (max-width: 480px) {
+      .nosotros__datos { grid-template-columns: 1fr; }
+    }
+    /* Respeta a quien prefiere sin animaciones */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- ENCABEZADO: logotipo + menú de navegación -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <a class="logotipo" href="#inicio" aria-label="Faro Consultores, ir al inicio">
+        <span class="logotipo__icono" aria-hidden="true">F</span>
+        Faro Consultores
+      </a>
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#ventajas">Ventajas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- PORTADA -->
+    <section class="portada" id="inicio">
+      <div class="contenedor">
+        <h1 class="portada__titulo">Cuentas claras para que tu empresa crezca</h1>
+        <p class="portada__texto">
+          Ayudamos a pequeñas y medianas empresas a ordenar su contabilidad,
+          cumplir con sus impuestos y tomar decisiones con datos confiables.
+        </p>
+        <a class="boton" href="#contacto">Solicitar asesoría</a>
+        <a class="boton boton--secundario" href="#servicios">Ver servicios</a>
+      </div>
+    </section>
+
+    <!-- PRESENTACIÓN DE LA EMPRESA -->
+    <section class="seccion seccion--blanca" id="nosotros">
+      <div class="contenedor nosotros">
+        <div>
+          <h2 class="seccion__titulo">Quiénes somos</h2>
+          <p>
+            Faro Consultores es una firma de asesoría contable y administrativa.
+            Acompañamos a emprendedores y empresas familiares con un trato cercano,
+            lenguaje sencillo y soluciones a la medida.
+          </p>
+          <p style="margin-top:12px;">
+            Nuestra misión es que cada cliente entienda sus números y cumpla sus
+            obligaciones sin estrés.
+          </p>
+        </div>
+        <div class="nosotros__datos">
+          <div class="dato"><strong>10+</strong>años de experiencia</div>
+          <div class="dato"><strong>200</strong>empresas asesoradas</div>
+          <div class="dato"><strong>24 h</strong>tiempo de respuesta</div>
+          <div class="dato"><strong>100%</strong>atención personalizada</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="seccion" id="servicios">
+      <div class="contenedor">
+        <h2 class="seccion__titulo">Nuestros servicios</h2>
+        <p class="seccion__intro">Todo lo que tu negocio necesita para mantener sus finanzas en orden.</p>
+        <div class="tarjetas">
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">📒</div>
+            <h3>Contabilidad</h3>
+            <p>Registro de operaciones, estados financieros e informes mensuales fáciles de leer.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🧾</div>
+            <h3>Asesoría tributaria</h3>
+            <p>Declaraciones de impuestos a tiempo y recomendaciones para pagar lo justo.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">👥</div>
+            <h3>Nómina</h3>
+            <p>Liquidación de salarios, prestaciones y seguridad social de tu equipo.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">📈</div>
+            <h3>Planeación financiera</h3>
+            <p>Presupuestos y proyecciones para decidir inversiones con seguridad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENTAJAS COMPETITIVAS -->
+    <section class="seccion seccion--blanca" id="ventajas">
+      <div class="contenedor">
+        <h2 class="seccion__titulo">Por qué elegirnos</h2>
+        <p class="seccion__intro">Lo que nos diferencia de otras firmas.</p>
+        <div class="tarjetas">
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">🤝</div>
+            <h3>Trato cercano</h3>
+            <p>Un asesor asignado que conoce tu negocio.</p>
+          </article>
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">⏱️</div>
+            <h3>Cumplimiento puntual</h3>
+            <p>Calendario de obligaciones para que nunca pagues multas.</p>
+          </article>
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">🔒</div>
+            <h3>Información segura</h3>
+            <p>Manejo confidencial de tus datos financieros.</p>
+          </article>
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">💬</div>
+            <h3>Lenguaje claro</h3>
+            <p>Te explicamos los números sin tecnicismos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="seccion" id="contacto">
+      <div class="contenedor">
+        <h2 class="seccion__titulo">Contáctanos</h2>
+        <p class="seccion__intro">Cuéntanos qué necesitas y te responderemos pronto.</p>
+        <div class="contacto">
+
+          <!-- Datos de ejemplo (ficticios) -->
+          <ul class="contacto__lista">
+            <li><span aria-hidden="true">📍</span> Calle Ejemplo 123, Ciudad Ejemplo</li>
+            <li><span aria-hidden="true">📞</span> +00 000 000 0000</li>
+            <li><span aria-hidden="true">✉️</span> contacto@ejemplo.com</li>
+            <li><span aria-hidden="true">🕘</span> Lunes a viernes, 8:00 a.m. a 5:00 p.m.</li>
+          </ul>
+
+          <!-- Formulario DEMOSTRATIVO -->
+          <form class="formulario" id="formulario-demo">
+            <p class="aviso-demo">
+              <strong>Formulario demostrativo:</strong> no envía información.
+              Para recibir mensajes se necesita una integración adicional.
+            </p>
+            <div>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" autocomplete="email" required>
+            </div>
+            <div>
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="boton">Enviar mensaje</button>
+            <p class="mensaje-demo" id="respuesta-demo" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie">
+    <div class="contenedor">
+      <p>&copy; 2026 Faro Consultores. Todos los derechos reservados.</p>
+      <p><a href="#inicio">Volver arriba</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Evita enviar el formulario y muestra un mensaje de demostración
+    document.getElementById("formulario-demo").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      document.getElementById("respuesta-demo").textContent =
+        "Demostración: el mensaje no fue enviado porque no hay un servicio conectado.";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
